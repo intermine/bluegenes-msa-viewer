@@ -14,4 +14,33 @@
 		border: 1px solid black;
 		padding: 20px;
 	}
+
+	.center {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.loading {
+		div {
+			width: 2.5em;
+			height: 3em;
+			border: 3px solid transparent;
+			border-top-color: #164594;
+			border-bottom-color: #164594;
+			border-radius: 50%;
+			animation: spin-stretch 2s ease infinite;
+		}
+		
+		@keyframes spin-stretch {
+			50% {
+				transform: rotate(360deg) scale(0.4, 0.33);
+				border-width: 8px;
+			}
+			100% {
+				transform: rotate(720deg) scale(1, 1);
+				border-width: 3px;
+			}
+		}
+	}
 }

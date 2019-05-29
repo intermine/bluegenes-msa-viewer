@@ -9,6 +9,10 @@ function main(el, service, imEntity, state, config) {
 		throw new Error('Call main with correct signature');
 	}
 
+	el.innerHTML = `
+		<div class="loading center"><div></div></div>
+	`;
+
 	// fetch all proteins associated with the particular gene
 	queryGeneToProtein(imEntity.value, service.root).then(res => {
 		var gene = res[0];
