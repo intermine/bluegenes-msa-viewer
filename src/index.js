@@ -14,46 +14,46 @@ function main(el, service, imEntity, state, config) {
 	`;
 
 	// fetch all proteins associated with the particular gene
-	queryGeneToProtein(imEntity.value, service.root).then(res => {
-		var gene = res[0];
-		var proteins = gene.proteins;
-		var queries = [];
-		proteins.forEach(protein => {
-			// protein to sequence query
-			var query = queryProteinToSeq(protein.primaryAccession, service.root);
-			queries.push(query);
-		});
+	queryGeneToProtein(imEntity.value, service.root)
+		.then(res => {
+			var gene = res[0];
+			var proteins = gene.proteins;
+			var queries = [];
 
-		var fasta = '';
-		Promise.all(queries).then(results => {
-			// concat all sequences together
-			results.forEach((result, i) => {
-				var sequence =
-					result[0].sequence.residues + (i == results.length - 1 ? '' : '\n');
-				fasta += '>' + proteins[i].primaryAccession + '\n' + sequence;
+			proteins.forEach(protein => {
+				// protein to sequence query
+				var query = queryProteinToSeq(protein.primaryAccession, service.root);
+				queries.push(query);
 			});
 
-			if (fasta === '') {
-				el.innerHTML = `
-					<div class="center">
-						No Proteins associated with the gene
-					</div>
-				`;
-				return;
-			}
+			var fasta = '';
+			Promise.all(queries).then(results => {
+				// concat all sequences together
+				results.forEach((result, i) => {
+					var sequence =
+						result[0].sequence.residues + (i == results.length - 1 ? '' : '\n');
+					fasta += '>' + proteins[i].primaryAccession + '\n' + sequence;
+				});
 
-			// parse sequences via msa lib
-			var seqs = msa.io.fasta.parse(fasta);
+				// parse sequences via msa lib
+				var seqs = msa.io.fasta.parse(fasta);
 
-			// initialise viewer
-			var viewer = msa.default({
-				el: el,
-				seqs: seqs
+				// initialise viewer
+				var viewer = msa.default({
+					el: el,
+					seqs: seqs
+				});
+
+				viewer.render();
 			});
-
-			viewer.render();
+		})
+		.catch(() => {
+			el.innerHTML = `
+				<div class="center">
+					No Proteins associated with the gene
+				</div>
+			`;
 		});
-	});
 }
 
 module.exports = { main };
