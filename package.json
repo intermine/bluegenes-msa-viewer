@@ -32,7 +32,9 @@
   ],
   "author": "",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "msa": "^1.0.3"
+  },
   "devDependencies": {
     "chokidar": "^3.0.0",
     "eslint": "^5.16.0",
