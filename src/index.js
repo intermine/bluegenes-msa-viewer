@@ -10,6 +10,10 @@ function main(el, service, imEntity, state, config) {
 	}
 
 	el.innerHTML = `
+		<h3 class="center">MSA Viewer - Loading...</h3>
+	`;
+
+	el.innerHTML += `
 		<div class="loading center"><div></div></div>
 	`;
 
@@ -45,6 +49,10 @@ function main(el, service, imEntity, state, config) {
 				});
 
 				viewer.render();
+
+				// remove header
+				document.getElementsByClassName('biojs_msa_header')[0].style.display =
+					'none';
 			});
 		})
 		.catch(() => {
