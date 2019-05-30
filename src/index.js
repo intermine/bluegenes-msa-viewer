@@ -19,8 +19,7 @@ function main(el, service, imEntity, state, config) {
 
 	// fetch all proteins associated with the particular gene
 	queryGeneToProtein(imEntity.value, service.root)
-		.then(res => {
-			var gene = res[0];
+		.then(gene => {
 			var proteins = gene.proteins;
 			var queries = [];
 

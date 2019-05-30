@@ -38,7 +38,7 @@ function queryData(geneId, serviceUrl, imjsClient = imjs) {
 		service
 			.records(queryGeneToProtein(geneId))
 			.then(data => {
-				if (data.length) resolve(data);
+				if (data.length) resolve(data[0]);
 				else reject('No associated proteins found!');
 			})
 			.catch(reject);
