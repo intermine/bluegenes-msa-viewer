@@ -36,6 +36,7 @@
     "msa": "^1.0.3"
   },
   "devDependencies": {
+		"@types/jest": "^24.0.13",
     "chokidar": "^3.0.0",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.2.0",
