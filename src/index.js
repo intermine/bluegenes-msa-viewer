@@ -1,4 +1,4 @@
-var msa = require('msa');
+var msa = require('msa/dist/msa');
 var queryGeneToProtein = require('./queries/geneToProtein');
 var queryProteinToSeq = require('./queries/proteinToSequence');
 
