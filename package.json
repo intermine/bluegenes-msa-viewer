@@ -33,7 +33,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "msa": "^1.0.3"
+    "@intermine/bluegenes-msa-viewer": "^1.0.0"
   },
   "devDependencies": {
 		"@types/jest": "^24.0.13",
