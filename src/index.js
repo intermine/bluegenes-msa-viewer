@@ -10,12 +10,15 @@ function main(el, service, imEntity, state, config) {
 	}
 
 	el.innerHTML = `
-		<h3 class="center">MSA Viewer - Loading...</h3>
+	<h3 class="center">MSA Viewer - Loading...</h3>
 	`;
 
 	el.innerHTML += `
-		<div class="loading center"><div></div></div>
+	<div class="loading center"><div></div></div>
 	`;
+
+	// don't do queries when in `testing` state
+	if (state.testing) return;
 
 	// fetch all proteins associated with the particular gene
 	queryGeneToProtein(imEntity.value, service.root)
