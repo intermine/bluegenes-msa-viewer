@@ -1,4 +1,4 @@
-var msa = require('msa/dist/msa');
+var msa = require('msa');
 var queryGeneToProtein = require('./queries/geneToProtein');
 var queryProteinToSeq = require('./queries/proteinToSequence');
 
@@ -34,7 +34,7 @@ function main(el, service, imEntity, state, config) {
 				// concat all sequences together
 				results.forEach((result, i) => {
 					var sequence =
-						result[0].sequence.residues + (i == results.length - 1 ? '' : '\n');
+						result.sequence.residues + (i == results.length - 1 ? '' : '\n');
 					fasta += '>' + proteins[i].primaryAccession + '\n' + sequence;
 				});
 

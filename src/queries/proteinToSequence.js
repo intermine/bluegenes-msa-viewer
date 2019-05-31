@@ -31,7 +31,10 @@ function queryData(primaryAccession, serviceUrl, imjsClient = imjs) {
 		const service = new imjsClient.Service({ root: serviceUrl });
 		service
 			.records(queryProteinToSequence(primaryAccession))
-			.then(resolve)
+			.then(data => {
+				if (data.length) resolve(data[0]);
+				else reject('No protein associated with passed `primaryAccession`!');
+			})
 			.catch(reject);
 	});
 }
