@@ -60,5 +60,21 @@ describe('queries', () => {
 				expect(res.sequence.residues).toBeTruthy();
 			});
 		});
+
+		test('should throw error if no sequence associated with the given protein accession id', () => {
+			const wrongMockData = Object.assign({}, mockData, {
+				proteinAccessionId: '1100005' // some wrong protein accession id
+			});
+
+			const queryRes = proteinToSeqQuery(
+				wrongMockData.proteinAccessionId,
+				wrongMockData.serviceUrl,
+				imjs
+			);
+
+			return expect(queryRes).rejects.toBe(
+				'No protein associated with passed `primaryAccession`!'
+			);
+		});
 	});
 });
