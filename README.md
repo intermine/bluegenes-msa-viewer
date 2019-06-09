@@ -1,9 +1,6 @@
 #  BlueGenes MSA Viewer
 
-FIXME: fill out a description of your tool here! :)
-
-## Licence
-
+BlueGenes MSA Viewer is a tool made for BlueGenes following BlueGenes Tool API. It can help users (biologists) to view [Multiple Sequence Alignment](https://en.wikipedia.org/wiki/Multiple_sequence_alignment) of Proteins. It can also be used as standalone tool to integrate in any web application.
 
 ### To set up locally for development
 
