@@ -1,4 +1,4 @@
-var msa = require('@intermine/bluegenes-msa-viewer');
+var msa = require('@intermine/msa-viewer');
 var queryGeneToProtein = require('./queries/geneToProtein');
 var queryProteinToSeq = require('./queries/proteinToSequence');
 
