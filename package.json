@@ -33,10 +33,11 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@intermine/bluegenes-msa-viewer": "^1.0.0"
+    "@intermine/msa-viewer": "0.0.0",
+    "bio.io": "^1.0.6"
   },
   "devDependencies": {
-		"@types/jest": "^24.0.13",
+    "@types/jest": "^24.0.13",
     "chokidar": "^3.0.0",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.2.0",
