@@ -71,6 +71,15 @@ function main(el, service, imEntity, state, config) {
 
 						viewer.render();
 
+						// text to notify for horizontal scroll since the msa-viewer lib doesn't support showing the scrollbar and user must be aware
+						setTimeout(() => {
+							const text = document.createElement('span');
+							text.innerText =
+								'Remember: You can scroll through the viewer horizontally to view the full sequence';
+							text.style.fontSize = '12px';
+							el.prepend(text);
+						}, 1500);
+
 						// remove header
 						document.getElementsByClassName(
 							'biojs_msa_header'
