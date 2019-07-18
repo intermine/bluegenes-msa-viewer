@@ -2,6 +2,13 @@
 
 BlueGenes MSA Viewer is a tool made for BlueGenes following BlueGenes Tool API. It can help users (biologists) to view [Multiple Sequence Alignment](https://en.wikipedia.org/wiki/Multiple_sequence_alignment) of Proteins. It can also be used as standalone tool to integrate in any web application.
 
+### Before deploying to BlueGenes (or anywhere)
+
+1. Make sure to deploy an instance of [sequence-alignment](https://github.com/intermine/sequence-alignment-service) service
+2. Then update the base url in this tool to the deployed url in `src/sequence-align-service.js`
+3. Build the tool using `npm run build`
+4. Deploy where ever you want! :D
+
 ### To set up locally for development
 
 1. Clone the repo

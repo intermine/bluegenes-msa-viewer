@@ -1,6 +1,7 @@
 var msa = require('@intermine/msa-viewer');
 var queryGeneToProtein = require('./queries/geneToProtein');
 var queryProteinToSeq = require('./queries/proteinToSequence');
+var sequenceAlignServiceUrl = require('./sequence-align-service');
 
 function renderError(el, message) {
 	el.innerHTML = `
@@ -11,7 +12,7 @@ function renderError(el, message) {
 }
 
 function getAlignedSequence(length, fasta) {
-	const fetchResult = fetch('http://localhost:3000/align-sequence', {
+	const fetchResult = fetch(sequenceAlignServiceUrl + '/align-sequence', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify({ sequence: fasta })
