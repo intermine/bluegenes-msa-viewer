@@ -1,1 +1,1 @@
-module.exports = 'http://localhost:3000/';
+module.exports = 'http://sequencealignment.apps.intermine.org';
