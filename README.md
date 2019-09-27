@@ -33,7 +33,6 @@ Assuming [webpack](https://webpack.js.org/) is installed globally:
 npm run build
 ```
 
-
 ##### Applied Coding practices / ESLint Rules:
 - _indent_: use __tab (2 space tab)__ instead of spaces to not get an error.
 - _linebreak-style_: use __\n__ for a newline, if you're on windows, configure it in your editor settings.
@@ -55,3 +54,6 @@ To serve your page at [http://localhost:3456](http://localhost:3456):
 ```bash
 npm run server
 ```
+
+Preview
+![preview](./preview.png)
