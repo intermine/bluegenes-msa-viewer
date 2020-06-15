@@ -16,8 +16,8 @@ describe('main', () => {
 
 		main(
 			el,
-			{ root: 'http://www.humanmine.org/human' },
-			{ value: 1000090 },
+			{ root: 'https://www.humanmine.org/humanmine' },
+			{ value: 1196911 },
 			{ testing: true },
 			{} // so that it throws error
 		);
