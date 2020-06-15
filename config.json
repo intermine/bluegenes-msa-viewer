@@ -1,8 +1,6 @@
 {
-  "accepts": ["id"]  ,
-  "classes":
-    ["Gene"]
-  ,
+  "accepts": ["id"],
+  "classes": ["Gene"],
   "columnMapping": {
     "Gene": {
       "id": "primaryIdentifier"
@@ -18,5 +16,6 @@
   "toolName" : {
     "human" :"BlueGenes MSA Viewer",
     "cljs" :"bluegenesMSAViewer"    
-  }
+  },
+  "version": 2
 }
