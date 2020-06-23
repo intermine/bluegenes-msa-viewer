@@ -5,8 +5,8 @@ const proteinToSeqQuery = require('../src/queries/proteinToSequence');
 describe('queries', () => {
 	describe('gene -> protein', () => {
 		const mockData = {
-			geneId: '1000090',
-			serviceUrl: 'http://www.humanmine.org/human'
+			geneId: '1196911',
+			serviceUrl: 'https://www.humanmine.org/humanmine'
 		};
 
 		test('should return a promise resolving with gene having proteins', () => {
@@ -44,7 +44,7 @@ describe('queries', () => {
 	describe('protein -> sequence', () => {
 		const mockData = {
 			proteinAccessionId: 'Q8IZ69',
-			serviceUrl: 'http://www.humanmine.org/human'
+			serviceUrl: 'https://www.humanmine.org/humanmine'
 		};
 		test('should return a promise resolving with sequence when passed correct protein accession id', () => {
 			const queryRes = proteinToSeqQuery(
