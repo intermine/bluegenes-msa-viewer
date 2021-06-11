@@ -14,7 +14,7 @@
     "js" : "dist/bundle.js"
   },
   "toolName" : {
-    "human" :"BlueGenes MSA Viewer",
+    "human" :"Multiple Sequence Alignment Viewer",
     "cljs" :"bluegenesMSAViewer"    
   },
   "version": 2

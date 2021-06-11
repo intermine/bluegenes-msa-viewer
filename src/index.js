@@ -28,7 +28,7 @@ function main(el, service, imEntity, state, config) {
 	}
 
 	el.innerHTML = `
-	<h3 class="center">MSA Viewer - Loading...</h3>
+	<h3 class="center">Multiple Sequence Alignment Viewer - Loading...</h3>
 	`;
 
 	el.innerHTML += `
