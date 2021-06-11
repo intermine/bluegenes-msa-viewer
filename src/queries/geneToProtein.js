@@ -1,7 +1,4 @@
 const queryGeneToProtein = geneId => ({
-	name: 'Gene_Protein',
-	title: 'Gene --> Proteins.',
-	comment: 'Added 26OCT2010: ML',
 	description:
 		'For a given Gene (or List of Genes) returns the corresponding Protein(s) products.',
 	from: 'Gene',
@@ -39,7 +36,7 @@ function queryData(geneId, serviceUrl, imjsClient = imjs) {
 			.records(queryGeneToProtein(geneId))
 			.then(data => {
 				if (data.length) resolve(data[0]);
-				else reject('No associated proteins found!');
+				else reject('No associated proteins found');
 			})
 			.catch(reject);
 	});

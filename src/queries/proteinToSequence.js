@@ -1,6 +1,4 @@
 const queryProteinToSequence = primaryAccession => ({
-	name: 'Protein_Sequence',
-	title: 'Protein --> Sequence',
 	description:
 		'for a specified protein or list proteins give the protein sequence and length.',
 	from: 'Protein',
@@ -33,7 +31,10 @@ function queryData(primaryAccession, serviceUrl, imjsClient = imjs) {
 			.records(queryProteinToSequence(primaryAccession))
 			.then(data => {
 				if (data.length) resolve(data[0]);
-				else reject('No protein associated with passed `primaryAccession`!');
+				else
+					reject(
+						'No protein found for UniProtKB accession ' + primaryAccession
+					);
 			})
 			.catch(reject);
 	});

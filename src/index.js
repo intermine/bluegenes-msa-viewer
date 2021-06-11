@@ -44,6 +44,9 @@ function main(el, service, imEntity, state, config) {
 			var proteins = gene.proteins;
 			var queries = [];
 
+			// TODO: I don't think it's necessary to query first for proteins, and
+			// then their sequences. We could just ask for their sequences right
+			// away. This could be an idea for a future refactor.
 			proteins.forEach(protein => {
 				// protein to sequence query
 				var query = queryProteinToSeq(protein.primaryAccession, service.root);
@@ -51,48 +54,73 @@ function main(el, service, imEntity, state, config) {
 			});
 
 			var fasta = '';
-			Promise.all(queries).then(results => {
-				// concat all sequences together
-				results.forEach((result, i) => {
-					var sequence =
-						result.sequence.residues + (i == results.length - 1 ? '' : '\n');
-					fasta += '>' + proteins[i].primaryAccession + '\n' + sequence;
-				});
-
-				getAlignedSequence(results.length, fasta)
-					.then(res => {
-						// parse sequences via msa lib
-						var seqs = msa.io.fasta.parse(res.data);
-
-						// initialise viewer
-						var viewer = msa.default({
-							el: el,
-							seqs: seqs
-						});
-
-						viewer.render();
-
-						// text to notify for horizontal scroll since the msa-viewer lib doesn't support showing the scrollbar and user must be aware
-						setTimeout(() => {
-							const text = document.createElement('span');
-							text.innerText =
-								'Remember: You can scroll through the viewer horizontally to view the full sequence';
-							text.style.fontSize = '12px';
-							el.prepend(text);
-						}, 1500);
-
-						// remove header
-						document.getElementsByClassName(
-							'biojs_msa_header'
-						)[0].style.display = 'none';
-					})
-					.catch(() => {
-						renderError(el, 'Something went wrong! Could not align sequences!');
+			Promise.all(queries)
+				.then(results => {
+					// concat all sequences together
+					results.forEach((result, i) => {
+						var sequence =
+							result.sequence.residues + (i == results.length - 1 ? '' : '\n');
+						fasta += '>' + proteins[i].primaryAccession + '\n' + sequence;
 					});
-			});
+
+					getAlignedSequence(results.length, fasta)
+						.then(res => {
+							if (res.error) {
+								throw res.error;
+							}
+
+							// parse sequences via msa lib
+							var seqs = msa.io.fasta.parse(res.data);
+
+							// initialise viewer
+							var viewer = msa.default({
+								el: el,
+								seqs: seqs
+							});
+
+							viewer.render();
+
+							// text to notify for horizontal scroll since the msa-viewer lib doesn't support showing the scrollbar and user must be aware
+							setTimeout(() => {
+								const text = document.createElement('span');
+								text.innerText =
+									'Remember: You can scroll through the viewer horizontally to view the full sequence.';
+								text.style.fontSize = '12px';
+								el.prepend(text);
+							}, 1500);
+
+							// remove header
+							document.getElementsByClassName(
+								'biojs_msa_header'
+							)[0].style.display = 'none';
+						})
+						.catch(error => {
+							if (error instanceof Error) {
+								// Error is from fetch, which usually means it failed to reach the server.
+								console.error(error); // eslint-disable-line
+								renderError(el, 'Failed to reach sequence alignment server');
+							} else {
+								// Error is a JS object from sequence alignment server.
+								console.error('Error when aligning sequences', error); // eslint-disable-line
+								renderError(el, 'Error occurred when aligning sequences');
+							}
+						});
+				})
+				.catch(error => {
+					if (typeof error === 'string') {
+						renderError(el, error);
+					} else {
+						renderError(el, 'Failed to query for protein sequences');
+					}
+				});
 		})
-		.catch(() => {
-			renderError(el, 'No Proteins associated with the gene!');
+		.catch(error => {
+			if (typeof error === 'string') {
+				renderError(el, error);
+			} else {
+				console.error(error); // eslint-disable-line
+				renderError(el, 'Failed to query for proteins');
+			}
 		});
 }
 

@@ -5,7 +5,7 @@ const proteinToSeqQuery = require('../src/queries/proteinToSequence');
 describe('queries', () => {
 	describe('gene -> protein', () => {
 		const mockData = {
-			geneId: '1196911',
+			geneId: '1007132',
 			serviceUrl: 'https://www.humanmine.org/humanmine'
 		};
 
@@ -28,7 +28,7 @@ describe('queries', () => {
 
 		test('should throw error if no protein associated with the given gene id', () => {
 			const wrongMockData = Object.assign({}, mockData, {
-				geneId: '1100005' // some wrong gene id
+				geneId: '1196911' // some wrong gene id
 			});
 
 			const queryRes = geneToProteinQuery(
@@ -37,7 +37,7 @@ describe('queries', () => {
 				imjs
 			);
 
-			return expect(queryRes).rejects.toBe('No associated proteins found!');
+			return expect(queryRes).rejects.toBe('No associated proteins found');
 		});
 	});
 
@@ -73,7 +73,7 @@ describe('queries', () => {
 			);
 
 			return expect(queryRes).rejects.toBe(
-				'No protein associated with passed `primaryAccession`!'
+				'No protein found for UniProtKB accession 1100005'
 			);
 		});
 	});
