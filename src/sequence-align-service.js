@@ -1,1 +1,1 @@
-module.exports = 'http://sequencealignment.apps.intermine.org';
+module.exports = 'https://sequencealignment.apps.intermine.org';
