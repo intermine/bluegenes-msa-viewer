@@ -1,6 +1,6 @@
 {
   "name": "@intermine/bluegenes-msa-viewer",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "main": "src/index.js",
   "description": "Visualize relation and linkages between the proteins associated with a particular gene.",
   "homepage": "http://www.intermine.org",
